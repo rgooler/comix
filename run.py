@@ -1,10 +1,5 @@
 #!virtualenv/bin/python
-from flask import Flask
-app = Flask(__name__)
+from app import app
+import config as config
 
-@app.route("/")
-def hello():
-    return "Hello World!"
-
-if __name__ == "__main__":
-    app.run()
+app.run(port=5000, debug=config.DEBUG)
