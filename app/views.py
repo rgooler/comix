@@ -29,8 +29,8 @@ def comic_page(comic, f, ext):
     page = f + '.' + ext
     cb = comicbook(comic)
     basepath = os.path.join(app.root_path, '..', 'res', comic)
-    page = os.path.join(basepath, cb.get_image(page))
-    return render_template("comic_page.html", comicbook=cb, page=page)
+    page = os.path.join(basepath, page)
+    return render_template("view_page.html", comicbook=cb, page=page)
 
 @app.route('/<comic>/thumbnail')
 def comic_thumbnail(comic):

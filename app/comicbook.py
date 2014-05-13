@@ -42,9 +42,10 @@ class comicbook(object):
         except IndexError:
             return None
 
-    def get_image(self, index):
+    def get_image(self, index=None):
         try:
-            return self.filelist[index]
+            if index is None: index = 0
+            return os.path.join(self.name, self.filelist[index])
         except IndexError:
             return None
 
