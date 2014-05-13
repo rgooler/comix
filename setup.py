@@ -13,3 +13,4 @@ else:
 pip = os.path.join('virtualenv', bin, 'pip')
 
 sub.call([pip, 'install', 'flask==0.10.1'])
+sub.call([pip, 'install', 'natsort==3.2.0'])

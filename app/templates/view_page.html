@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <title>Comic Viewer - {{comic.name}}</title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+  </head>
+  <body>
+    <div data-role="navbar">
+      <ul>
+        <li><a href="//" data-icon="home" data-icon-pos="left">Home</a></li>
+        <li><a href="//view/{{comic.name}}" class="ui-btn-active">{{comic.name}}</a></li>
+      </ul>
+    </div><!-- /navbar -->
+    <img src="//img/{{comic}}/{{comic.section}}/{{comic.section.page}}"
+  </body>
+</html>

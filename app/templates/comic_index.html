@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Comic Viewer</title>
+    <title>Comic Viewer - {{comicbook.name}}</title>
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
@@ -8,13 +8,14 @@
   <body>
     <div data-role="navbar">
       <ul>
-        <li><a href="/" class="ui-btn-active">Home</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/{{comicbook.name}}" class="ui-btn-active">{{comicbook.name}}</a></li>
       </ul>
     </div><!-- /navbar -->
-    {% if comics -%}
-    <ul data-role="listview" data-filter="true" data-filter-placeholder="Search comics..." data-autodividers="true">
-      {% for comic in comics -%}
-        <li><a href="/{{ comic }}"><img src="/{{comic}}/thumbnail">{{comic}}</a></li>
+    {% if comicbook.filelist -%}
+    <ul data-role="listview">
+      {% for file in comicbook.filelist -%}
+        <li><a href="/{{ comicbook.path }}{{file}}"><!--<img src="/{{comic}}/thumbnail.jpg">-->{{file}}</a></li>
       {% endfor -%}
     {% else -%}
     <ul data-role="listview">
