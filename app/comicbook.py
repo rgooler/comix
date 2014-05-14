@@ -15,19 +15,12 @@ class comicbook(object):
 
     def generate_filelist(self):
         x, self.dirlist, self.filelist = os.walk(self.localpath).next()
-        print self.localpath
-        print x
-        print self.dirlist
-        print self.filelist
-        x, self.dirlist, self.filelist = os.walk(self.localpath).next()
-        print self.localpath
-        print x
-        print self.dirlist
-        print self.filelist
 
     def thumbnail_path(self):
-        return self.filelist[0] or None
-
+        try:
+            return self.filelist[0]
+        except IndexError:
+            return None
 
     def thumbnail_mimetype(self):
         return 'image/jpeg'
