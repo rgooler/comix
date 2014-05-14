@@ -17,15 +17,13 @@
       {% for dir in comicbook.dirlist -%}
         <li><a href="/{{ comicbook.path }}{{dir}}"><img src="/{{comicbook.path}}{{dir}}/thumbnail">{{dir}}</a></li>
       {% endfor -%}
+    </ul>
     {% elif comicbook.filelist -%}
-    <ul data-role="listview">
-      {% for file in comicbook.filelist -%}
-        <li><a href="/{{ comicbook.path }}{{file}}"><!--<img src="/{{comic}}/thumbnail.jpg">-->{{file}}</a></li>
-      {% endfor -%}
+    <a href="/{{ comicbook.path }}{{comicbook.filelist[0]}}"><img src="/{{ comicbook.path }}{{comicbook.filelist[0]}}"></a>
     {% else -%}
     <ul data-role="listview">
-      <li>No comics found :(</li>
-    {% endif -%}
+      <li>No comics/pages found :(</li>
     </ul>
+    {% endif -%}
   </body>
 </html>
