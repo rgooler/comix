@@ -19,7 +19,7 @@
       {% endfor -%}
     </ul>
     {% elif comicbook.filelist -%}
-    <a href="/{{ comicbook.path }}{{comicbook.filelist[0]}}"><img src="/{{ comicbook.path }}{{comicbook.filelist[0]}}"></a>
+    <a href="{{comicbook.get_next_image() }}"><img src="{{comicbook.get_image() }}"></a>
     {% else -%}
     <ul data-role="listview">
       <li>No comics/pages found :(</li>

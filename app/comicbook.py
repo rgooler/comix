@@ -25,13 +25,13 @@ class comicbook(object):
     def thumbnail_mimetype(self):
         return 'image/jpeg'
 
-    def get_next_image(self):
+    def get_prev_image(self):
         if self.current_image == 0:
             return None
         else:
             return self.filelist[self.current_image - 1]
 
-    def get_prev_image(self):
+    def get_next_image(self):
         try:
             return self.filelist[self.current_image + 1]
         except IndexError:
@@ -40,7 +40,7 @@ class comicbook(object):
     def get_image(self, index=None):
         try:
             if index is None: index = 0
-            return os.path.join(self.name, self.filelist[index])
+            return os.path.join('/', self.name, self.filelist[index], 'img')
         except IndexError:
             return None
 
