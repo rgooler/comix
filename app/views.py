@@ -18,19 +18,16 @@ def index():
 @app.route('/<path:comic>/<f>.<ext>')
 def comic_page(comic, f, ext):
     cb = comicbook(comic)
+    filename = f + '.' + ext
     basepath = os.path.join(app.root_path, '..', 'res', comic)
-    page = os.path.join(basepath, f + '.' + ext)
-    return render_template("view_page.html", comicbook=cb, page=page)
+    page = os.path.join(basepath, filename)
+    return render_template("comic_index.html", comicbook=cb, page=page, filename=filename)
 
 @app.route('/<path:comic>/<f>.<ext>/img')
 def comic_page_img(comic, f, ext):
-    print "ding"
     page = f + '.' + ext
-    cb = comicbook(comic)
     basepath = os.path.join(app.root_path, '..', 'res', comic)
-    page = os.path.join(basepath, page)
-    print page
-    return send_from_directory(basepath, cb.thumbnail_path())
+    return send_from_directory(basepath, page)
 
 @app.route('/<path:comic>/thumbnail')
 def comic_thumbnail(comic):
@@ -47,4 +44,4 @@ def comic_thumbnail(comic):
 def comic(comic):
     cb = comicbook(comic)
     print cb.filelist
-    return render_template("comic_index.html", comicbook=cb)
+    return render_template("comic_index.html", comicbook=cb, filename="")
