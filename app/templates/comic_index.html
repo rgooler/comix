@@ -2,10 +2,15 @@
   <head>
     <title>Comic Viewer - {{comicbook.name}}</title>
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="//code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+    <script src="/swipepage.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   </head>
   <body>
+    {% if comicbook.filelist -%}
+    <div data-role="page" data-prev="{{comicbook.get_prev_image(filename) }}" data-next="{{comicbook.get_next_image(filename) }}" data-prefetch data-fullscreen="true">
+    {% endif -%}
     <div data-role="navbar">
       <ul>
         <li><a href="/">Home</a></li>
@@ -15,15 +20,19 @@
     {% if comicbook.dirlist -%}
     <ul data-role="listview">
       {% for dir in comicbook.dirlist -%}
-        <li><a href="/{{ comicbook.path }}{{dir}}"><img src="/{{comicbook.path}}{{dir}}/thumbnail">{{dir}}</a></li>
+        <li><a href="/{{ comicbook.path }}{{dir}}" data-prefetch><img src="/{{comicbook.path}}{{dir}}/thumbnail">{{dir}}</a></li>
       {% endfor -%}
     </ul>
     {% elif comicbook.filelist -%}
-    <a href="{{comicbook.get_next_image(filename) }}"><img src="{{comicbook.get_image(filename) }}"></a>
+    <a href="#" data-prefetch><img src="{{comicbook.get_image(filename) }}"></a>
+    </div>
     {% else -%}
     <ul data-role="listview">
       <li>No comics/pages found :(</li>
     </ul>
+    {% endif -%}
+    {% if comicbook.filelist -%}
+    </div>
     {% endif -%}
   </body>
 </html>

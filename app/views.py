@@ -9,6 +9,11 @@ def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'favicon.ico', mimetype='image/x-icon')
 
+@app.route('/swipepage.js')
+def swipepage_js():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'swipepage.js', mimetype='text/javascript')
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -34,10 +39,8 @@ def comic_thumbnail(comic):
     cb = comicbook(comic)
     if cb.thumbnail_path():
         basepath = os.path.join(app.root_path, '..', 'res', comic)
-        print basepath + '/' + cb.thumbnail_path()
         return send_from_directory(basepath, cb.thumbnail_path())
     else:
-        print "Show blank_icon"
         return send_from_directory(os.path.join(app.root_path, 'static'), 'blank_thumbnail.gif', mimetype='image/gif')
 
 @app.route('/<path:comic>')

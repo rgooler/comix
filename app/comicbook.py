@@ -56,19 +56,3 @@ class comicbook(object):
         if filename is None or not filename:
             return 0
         return self.filelist.index(filename)
-
-
-if __name__ == "__main__":
-    try:
-        first_comic = os.walk('../res/').next()[1][1]
-        #first_comic = [x[0].replace('../res/','',1) for x in os.walk('../res/')][1]
-    except IndexError:
-        print "Cannot find any comics"
-        sys.exit(1)
-    cb = comicbook(first_comic)
-
-    import pprint
-    pp = pprint.PrettyPrinter(indent=2)
-    pp = pp.pprint
-    pp(cb.__dict__)
-    pp(get_list_of_images)
