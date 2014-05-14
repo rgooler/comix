@@ -14,14 +14,7 @@ class comicbook(object):
         self.generate_filelist()
 
     def generate_filelist(self):
-        self.filelist = list()
-        i = 0
-        for o, d, f in os.walk(self.localpath):
-            #print self.localpath, o
-            if o == self.localpath:
-                self.filelist = natsorted(f)
-                return
-
+        x, self.dirlist, self.filelist = os.walk(self.localpath).next()
 
     def thumbnail_path(self):
         return self.filelist[0] or None
@@ -52,7 +45,8 @@ class comicbook(object):
 
 if __name__ == "__main__":
     try:
-        first_comic = [x[0].replace('../res/','',1) for x in os.walk('../res/')][1]
+        first_comic = os.walk('../res/').next()[1][1]
+        #first_comic = [x[0].replace('../res/','',1) for x in os.walk('../res/')][1]
     except IndexError:
         print "Cannot find any comics"
         sys.exit(1)

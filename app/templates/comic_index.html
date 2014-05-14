@@ -12,7 +12,12 @@
         <li><a href="/{{comicbook.name}}" class="ui-btn-active">{{comicbook.name}}</a></li>
       </ul>
     </div><!-- /navbar -->
-    {% if comicbook.filelist -%}
+    {% if comicbook.dirlist -%}
+    <ul data-role="listview">
+      {% for dir in comicbook.dirlist -%}
+        <li><a href="/{{ comicbook.path }}{{dir}}"><img src="/{{comicbook.path}}{{dir}}/thumbnail">{{dir}}</a></li>
+      {% endfor -%}
+    {% elif comicbook.filelist -%}
     <ul data-role="listview">
       {% for file in comicbook.filelist -%}
         <li><a href="/{{ comicbook.path }}{{file}}"><!--<img src="/{{comic}}/thumbnail.jpg">-->{{file}}</a></li>

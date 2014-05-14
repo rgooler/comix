@@ -12,18 +12,10 @@ def favicon():
 @app.route('/')
 @app.route('/index')
 def index():
-    comics = [x[1] for x in os.walk('res/')][0]
+    comics = os.walk('res/').next()[1]
     return render_template("index.html", comics=comics)
 
-
-
-@app.route('/<comic>/<chapter>/')
-def comic_chapter(comic, chapter):
-    cb = comicbook(comic)
-    print cb.filelist
-    return render_template("comic_index.html", comicbook=cb)
-
-@app.route('/<comic>/<f>.<ext>')
+@app.route('/<path:comic>/<f>.<ext>')
 def comic_page(comic, f, ext):
     print "ding"
     page = f + '.' + ext
@@ -32,7 +24,7 @@ def comic_page(comic, f, ext):
     page = os.path.join(basepath, page)
     return render_template("view_page.html", comicbook=cb, page=page)
 
-@app.route('/<comic>/thumbnail')
+@app.route('/<path:comic>/thumbnail')
 def comic_thumbnail(comic):
     
     cb = comicbook(comic)
@@ -44,8 +36,7 @@ def comic_thumbnail(comic):
         print "Show blank_icon"
         return send_from_directory(os.path.join(app.root_path, 'static'), 'blank_thumbnail.gif', mimetype='image/gif')
 
-
-@app.route('/<comic>')
+@app.route('/<path:comic>')
 def comic(comic):
     cb = comicbook(comic)
     print cb.filelist
