@@ -12,7 +12,8 @@ class comicbook(object):
         self.filename = filename
         self.generate_filelist()
         if self.filename is None or not self.filename:
-            self.filename = self.filelist[0]        
+            self.filename = self.filelist[0]   
+        self.path.replace('//','/')     
 
     def generate_filelist(self):
         x, self.dirlist, self.filelist = os.walk(self.localpath).next()

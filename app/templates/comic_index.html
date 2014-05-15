@@ -24,7 +24,9 @@
       {% endfor -%}
     </ul>
     {% elif comicbook.filelist -%}
-    <a href="{{comicbook.get_next_image()}}" data-prefetch><img src="{{comicbook.get_image() }}" style="max-height:100%"></a>
+    <div class="showpage" style="overflow-x:scroll;max-width=100%">
+      <a href="{{comicbook.get_next_image()}}" data-prefetch><img src="{{comicbook.get_image() }}" style="max-height:100%"></a>
+    </div>
     </div>
     {% else -%}
     <ul data-role="listview">
