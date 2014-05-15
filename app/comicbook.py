@@ -6,8 +6,7 @@ class comicbook(object):
     filelist = []
 
     def __init__(self, name, filename=None):
-        self.name = name
-        self.path = (name + "/").replace('//','/')
+        self.name = name.replace('//','/')
         self.localpath = "res/" + name + "/"
         self.filename = filename
         self.generate_filelist()
