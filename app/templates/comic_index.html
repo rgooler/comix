@@ -9,7 +9,7 @@
   </head>
   <body>
     {% if comicbook.filelist -%}
-    <div data-role="page" data-prev="{{comicbook.get_prev_image(filename) }}" data-next="{{comicbook.get_next_image(filename) }}" data-prefetch data-fullscreen="true">
+    <div data-role="page" data-prev="{{comicbook.get_prev_image() }}" data-next="{{comicbook.get_next_image() }}" data-prefetch data-fullscreen="true" data-url="/{{comicbook.path}}">
     {% endif -%}
     <div data-role="navbar">
       <ul>
@@ -24,7 +24,7 @@
       {% endfor -%}
     </ul>
     {% elif comicbook.filelist -%}
-    <a href="#" data-prefetch><img src="{{comicbook.get_image(filename) }}"></a>
+    <a href="{{comicbook.get_next_image()}}" data-prefetch><img src="{{comicbook.get_image() }}" style="max-height: 100%"></a>
     </div>
     {% else -%}
     <ul data-role="listview">

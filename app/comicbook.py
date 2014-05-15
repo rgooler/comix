@@ -2,15 +2,17 @@ import os
 import sys
 from natsort import natsorted
 
-
 class comicbook(object):
     filelist = []
 
-    def __init__(self, name):
+    def __init__(self, name, filename=None):
         self.name = name
         self.path = name + "/"
         self.localpath = "res/" + name + "/"
+        self.filename = filename
         self.generate_filelist()
+        if self.filename is None or not self.filename:
+            self.filename = self.filelist[0]        
 
     def generate_filelist(self):
         x, self.dirlist, self.filelist = os.walk(self.localpath).next()
@@ -30,29 +32,33 @@ class comicbook(object):
     def thumbnail_mimetype(self):
         return 'image/jpeg'
 
-    def get_prev_image(self, filename=None):
+    def get_prev_image(self):
         try:
-            prevfile = self.filelist[self.current_image() - 1]
-            return os.path.join('/', self.name, prevfile)
+            idx = self.current_image() - 1
+            if idx >= 0:
+                return os.path.join('/', self.name, self.filelist[idx])
+            else:
+                return os.path.join('/', self.name)
         except IndexError:
+            print "get_prev_image - IndexError"
             return os.path.join('/', self.name)
 
-    def get_next_image(self,filename=None):
+    def get_next_image(self):
         try:
-            nextfile = self.filelist[self.current_image(filename) + 1]
-            return os.path.join('/', self.name, nextfile)
+            idx = self.current_image() + 1
+            if idx < len(self.filelist):
+                return os.path.join('/', self.name, self.filelist[idx])
+            else:
+                return os.path.join('/', self.name, '..')
+            return 
         except IndexError:
-            return '/'
+            return os.path.join('/', self.name, '..')
 
-    def get_image(self, filename=None):
+    def get_image(self):
         try:
-            if filename is None or not filename: 
-                filename = self.filelist[0]
-            return os.path.join('/', self.name, filename, 'img')
+            return os.path.join('/', self.name, self.filename, 'img')
         except IndexError:
             return None
 
-    def current_image(self, filename=None):
-        if filename is None or not filename:
-            return 0
-        return self.filelist.index(filename)
+    def current_image(self):
+        return self.filelist.index(self.filename)
