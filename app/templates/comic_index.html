@@ -1,15 +1,15 @@
 <html>
   <head>
     <title>Comic Viewer - {{comicbook.name}}</title>
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
     <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="//code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
     <script src="/swipepage.js"></script>
+    <script src="//code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   </head>
   <body>
     {% if comicbook.filelist -%}
-    <div data-role="page" data-prev="{{comicbook.get_prev_image() }}" data-next="{{comicbook.get_next_image() }}" data-prefetch data-fullscreen="true">
+    <div data-role="page" data-prev="{{comicbook.get_prev_image() }}" data-next="{{comicbook.get_next_image() }}" data-prefetch data-fullscreen="true" id="{{comicbook.get_image()}}">
     {% endif -%}
     <div data-role="navbar">
       <ul>

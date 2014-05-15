@@ -32,32 +32,21 @@ class comicbook(object):
         return 'image/jpeg'
 
     def get_prev_image(self):
-        try:
-            idx = self.current_image() - 1
-            if idx >= 0:
-                return os.path.join('/', self.name, self.filelist[idx])
-            else:
-                return os.path.join('/', self.name)
-        except IndexError:
-            print "get_prev_image - IndexError"
+        idx = self.current_image() - 1
+        if idx >= 0:
+            return os.path.join('/', self.name, self.filelist[idx])
+        else:
             return os.path.join('/', self.name)
 
     def get_next_image(self):
-        try:
-            idx = self.current_image() + 1
-            if idx < len(self.filelist):
-                return os.path.join('/', self.name, self.filelist[idx])
-            else:
-                return os.path.join('/', self.name, '..')
-            return 
-        except IndexError:
-            return os.path.join('/', self.name, '..')
+        idx = self.current_image() + 1
+        if idx < len(self.filelist):
+            return os.path.join('/', self.name, self.filelist[idx])
+        else:
+            return os.path.join('/', self.name, '..').rstrip('/')
 
     def get_image(self):
-        try:
-            return os.path.join('/', self.name, self.filename, 'img')
-        except IndexError:
-            return None
+        return os.path.join('/', self.name, self.filename, 'img')
 
     def current_image(self):
         return self.filelist.index(self.filename)
