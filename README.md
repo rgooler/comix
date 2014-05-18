@@ -10,10 +10,9 @@ Prerequisites:
 * Python 2.7. Probably works back to 2.4 or earlier, but I havn't tested it
 * Pip
 
-Then run the below command
-```
-./setup.py
-```
+For Windows: run setup.cmd
+
+For Linux/Mac: run setup.sh
 
 Run (Non-production)
 --------------------

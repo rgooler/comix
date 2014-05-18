@@ -62,3 +62,6 @@ docs/_build/
 
 # Don't save comics
 res/*
+
+# Don't save virtualenv
+virtualenv/*
