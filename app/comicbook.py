@@ -21,6 +21,8 @@ class comicbook(object):
         self.filelist = [ v for v in self.filelist if not v.startswith('desktop.ini') ]
         self.filelist = [ v for v in self.filelist if not v.endswith('.txt') ]
         self.filelist = [ v for v in self.filelist if not v.startswith('README') ]
+		# Sort files
+        self.filelist = natsorted(self.filelist)
 
     def thumbnail_path(self):
         try:
