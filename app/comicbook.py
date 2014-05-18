@@ -1,12 +1,12 @@
 import os
-import sys
 from natsort import natsorted
+
 
 class comicbook(object):
     filelist = []
 
     def __init__(self, name, filename=None):
-        self.name = name.replace('//','/')
+        self.name = name.replace('//', '/')
         self.localpath = "res/" + name + "/"
         self.filename = filename
         self.generate_filelist()
@@ -14,16 +14,17 @@ class comicbook(object):
             self.filename = self.filelist[0]
 
     def generate_filelist(self):
-        x, self.dirlist, self.filelist = os.walk(self.localpath).next()
-        #Filter out system files
-        self.filelist = [ v for v in self.filelist if not v.startswith('.') ]
-        self.filelist = [ v for v in self.filelist if not v.startswith('thumbs.db') ]
-        self.filelist = [ v for v in self.filelist if not v.startswith('desktop.ini') ]
-        self.filelist = [ v for v in self.filelist if not v.endswith('.txt') ]
-        self.filelist = [ v for v in self.filelist if not v.endswith('.url') ]
-        self.filelist = [ v for v in self.filelist if not v.startswith('README') ]
-		# Sort files
-        self.filelist = natsorted(self.filelist)
+        x, dlist, flist = os.walk(self.localpath).next()
+        # Filter out system files
+        self.filelist = [v for v in flist if not v.startswith('.')]
+        self.filelist = [v for v in flist if not v.startswith('thumbs.db')]
+        self.filelist = [v for v in flist if not v.startswith('desktop.ini')]
+        self.filelist = [v for v in flist if not v.endswith('.txt')]
+        self.filelist = [v for v in flist if not v.endswith('.url')]
+        self.filelist = [v for v in flist if not v.startswith('README')]
+        # Sort files
+        self.filelist = natsorted(flist)
+        self.dirlist = natsorted(dlist)
 
     def thumbnail_path(self):
         try:
