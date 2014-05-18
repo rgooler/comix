@@ -16,18 +16,19 @@ class comicbook(object):
     def generate_filelist(self):
         x, dlist, flist = os.walk(self.localpath).next()
         # Filter out system files
-        self.filelist = [v for v in flist if not v.startswith('.')]
-        self.filelist = [v for v in flist if not v.startswith('thumbs.db')]
-        self.filelist = [v for v in flist if not v.startswith('desktop.ini')]
-        self.filelist = [v for v in flist if not v.endswith('.txt')]
-        self.filelist = [v for v in flist if not v.endswith('.url')]
-        self.filelist = [v for v in flist if not v.startswith('README')]
+        flist = [v for v in flist if not v.startswith('.')]
+        flist = [v for v in flist if not v.startswith('Thumbs.db')]
+        flist = [v for v in flist if not v.startswith('desktop.ini')]
+        flist = [v for v in flist if not v.endswith('.txt')]
+        flist = [v for v in flist if not v.endswith('.url')]
+        flist = [v for v in flist if not v.startswith('README')]
         # Sort files
         self.filelist = natsorted(flist)
         self.dirlist = natsorted(dlist)
 
     def thumbnail_path(self):
         try:
+            print self.filelist[0]
             return self.filelist[0]
         except IndexError:
             return None
