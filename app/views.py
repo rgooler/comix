@@ -12,6 +12,12 @@ def favicon():
                                'favicon.ico', mimetype='image/x-icon')
 
 
+@app.route('/ios_icon.png')
+def ios_icon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'ios_icon.png', mimetype='image/png')
+
+
 @app.route('/swipepage.js')
 def swipepage_js():
     return send_from_directory(os.path.join(app.root_path, 'static'),
