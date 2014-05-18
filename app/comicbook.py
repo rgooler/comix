@@ -20,6 +20,7 @@ class comicbook(object):
         self.filelist = [ v for v in self.filelist if not v.startswith('thumbs.db') ]
         self.filelist = [ v for v in self.filelist if not v.startswith('desktop.ini') ]
         self.filelist = [ v for v in self.filelist if not v.endswith('.txt') ]
+        self.filelist = [ v for v in self.filelist if not v.endswith('.url') ]
         self.filelist = [ v for v in self.filelist if not v.startswith('README') ]
 		# Sort files
         self.filelist = natsorted(self.filelist)
